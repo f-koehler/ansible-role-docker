@@ -1,0 +1,18 @@
+galaxy_info:
+  role_name: docker
+  author: fkoehler
+  description: Install and start Docker
+  license: license (MIT)
+  min_ansible_version: 2.5
+  platforms:
+    - name: ArchLinux
+      versions:
+        - all
+  galaxy_tags:
+    - system
+    - containers
+    - docker
+    - orchestration
+    - compose
+    - server
+dependencies: []
