@@ -1,0 +1,38 @@
+- name: Ensure old docker packages are not installed.
+  ansible.builtin.apt:
+    name: "{{ package }}"
+    state: absent
+  loop:
+    - docker
+    - docker-engine
+    - docker.io
+    - containerd
+    - runc
+  loop_control:
+    loop_var: package
+
+- name: Install packages apt needs to access Docker repository.
+  ansible.builtin.apt:
+    name: "{{ package }}"
+    state: absent
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+  loop_control:
+    loop_var: package
+
+- name: Add apt key for Docker repository.
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: Get architecture. # noqa 303
+  ansible.builtin.shell: dpkg --print-architecture
+  register: dpkg_architecture
+
+- name: Register Docker repository.
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ dpkg_architecture.stdout }}] https://download.docker.com/linux/ubuntu/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
