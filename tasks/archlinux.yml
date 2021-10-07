@@ -1,13 +1,12 @@
 - name: Install Docker.
   community.general.pacman:
-    name: "{{ package }}"
+    name:
+      - docker
+      - pigz
+      - btrfs-progs
+      - docker-compose
+      - python-docker
     state: present
-  loop:
-    - docker
-    - pigz
-    - btrfs-progs
-    - docker-compose
-    - python-docker
 
 - name: Start docker.
   ansible.builtin.systemd:
