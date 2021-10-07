@@ -6,3 +6,6 @@
     - "{{ ansible_os_family | lower }}.yml"
   loop_control:
     loop_var: tasks
+
+- name: Flush handlers.
+  ansible.builtin.meta: flush_handlers
