@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: docker
-  author: fkoehler
+  author: f_koehler
   description: Install and start Docker
   license: license (MIT)
   min_ansible_version: 2.5
