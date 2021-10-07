@@ -29,9 +29,10 @@
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
 
-- name: Get architecture. # noqa 303
-  ansible.builtin.shell: dpkg --print-architecture
+- name: Get architecture.
+  ansible.builtin.command: dpkg --print-architecture
   register: dpkg_architecture
+  changed_when: false
 
 - name: Register Docker repository.
   ansible.builtin.apt_repository:
