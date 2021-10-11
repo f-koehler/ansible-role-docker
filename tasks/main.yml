@@ -7,5 +7,15 @@
   loop_control:
     loop_var: tasks
 
+- name: Add users to docker group.
+  ansible.builtin.user:
+    append: true
+    groups:
+      - docker
+    name: "{{ user }}"
+  loop: "{{ docker_users }}"
+  loop_control:
+    loop_var: user
+
 - name: Flush handlers.
   ansible.builtin.meta: flush_handlers

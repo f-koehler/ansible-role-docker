@@ -14,7 +14,11 @@ None.
 
 ## Role Variables
 
-None.
+```yaml
+docker_users: []
+```
+
+A list of users to add to the `docker` group in order to use Docker without needing to use `sudo`.
 
 ## Dependencies
 
